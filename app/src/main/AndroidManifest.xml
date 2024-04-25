@@ -27,6 +27,7 @@
         <activity android:name=".usuarios.view.PerfilUsuarioImpl"></activity>
         <activity android:name=".posts.view.PostViewImpl"></activity>
         <activity android:name=".posts.view.PostEditImpl"></activity>
+        <activity android:name=".posts.view.PostAddImpl"></activity>
     </application>
 
 </manifest>

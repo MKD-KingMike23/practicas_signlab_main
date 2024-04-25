@@ -7,6 +7,7 @@ import com.miguelrosa.practicas_signlab.databinding.ActivityPerfilusuarioBinding
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -26,6 +27,7 @@ import com.miguelrosa.practicas_signlab.di.appComponent.DaggerAppComponent;
 import com.miguelrosa.practicas_signlab.di.appModule.AppModule;
 import com.miguelrosa.practicas_signlab.di.appModule.SharedPreferencesModule;
 import com.miguelrosa.practicas_signlab.home.view.HomeActivity;
+import com.miguelrosa.practicas_signlab.posts.view.PostAddImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostEditImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostViewImpl;
 import com.miguelrosa.practicas_signlab.usuarios.adapter.PostsAdapter;
@@ -88,6 +90,12 @@ public class PerfilUsuarioImpl extends AppCompatActivity implements PerfilUsuari
         appComponent.inject(this);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add_post_usuario, menu);
+        return true;
+    }
+
     public void onGoBack(View view) {
         startActivity(new Intent(this, HomeActivity.class));
     }
@@ -134,7 +142,7 @@ public class PerfilUsuarioImpl extends AppCompatActivity implements PerfilUsuari
             }
 
             if (id == R.id.add){
-            Intent intent = new Intent(this, PostAdd.class);
+            Intent intent = new Intent(this, PostAddImpl.class);
             intent.putExtra("user", user);
             activityResultLauncher.launch(intent);
             }
