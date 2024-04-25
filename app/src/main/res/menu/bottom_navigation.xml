@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/usuarios"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Usuarios"/>
+
+    <item
+        android:id="@+id/albunes"
+        android:icon="@drawable/album"
+        android:title="Álbunes"/>
+    <item
+        android:id="@+id/portadas"
+        android:icon="@drawable/photo"
+        android:title="Portadas"/>
+</menu>
