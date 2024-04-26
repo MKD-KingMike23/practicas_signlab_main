@@ -24,6 +24,7 @@ public class PostAddImpl extends AppCompatActivity implements PostAdd {
     private ActivityAddpostBinding binding;
     private ActionBar actionBar;
     private User user;
+    private Post post;
     @Inject
     PostAddPresenter presenter;
 
@@ -39,7 +40,24 @@ public class PostAddImpl extends AppCompatActivity implements PostAdd {
         actionBar.setTitle("Crear post");
 
         user = getIntent().getParcelableExtra("user");
+        post = getIntent().getParcelableExtra("post");
 
+        if(post != null){
+            actionBar.setTitle("Editar post");
+            setField(post);
+        }
+        binding.buttonGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (post != null) {
+                    presenter.onEditPost(post.getId(), post.getId(), binding.editTextTitle.getText().toString(), binding.editTextBody.getText().toString(), post.getUserId());
+                    finish();
+                } else {
+                    presenter.onAddPost(user.getId(), binding.editTextTitle.getText().toString(), binding.editTextBody.getText().toString());
+                    finish();
+                }
+            }
+        });
     }
 
     private void initInjection() {
@@ -50,8 +68,11 @@ public class PostAddImpl extends AppCompatActivity implements PostAdd {
         appComponent.inject(this);
     }
 
-    public void onGuardar(View view){
-        presenter.onGuardar(user.getId(), binding.editTextTitle.getText().toString(), binding.editTextBody.getText().toString());
+    private void setField(com.miguelrosa.practicas_signlab.api.Models.Post post) {
+        binding.editTextTitle.setText(post.getTitle());
+        binding.editTextBody.setText(post.getBody());
+        binding.buttonGuardar.setText("EDITAR POST");
+        binding.textView.setText("Editar Post");
     }
 
     @Override
@@ -61,11 +82,16 @@ public class PostAddImpl extends AppCompatActivity implements PostAdd {
 
     @Override
     public void onShowSuccessData(Post response) {
-        Toast.makeText(this, "Post creado correctamente.", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
-        intent.putExtra("user", user);
-        setResult(RESULT_OK, intent);
-        finish();
+        Toast.makeText(this, response.getTitle()+"\n"+response.getBody(), Toast.LENGTH_SHORT).show();
+        if(post != null){
+            setField(post);
+            finish();
+        }else{
+            Intent intent = new Intent();
+            intent.putExtra("user", user);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 
     @Override
@@ -74,7 +100,6 @@ public class PostAddImpl extends AppCompatActivity implements PostAdd {
 
         if (id == android.R.id.home) {
             finish();
-
         }
         return super.onOptionsItemSelected(item);
     }

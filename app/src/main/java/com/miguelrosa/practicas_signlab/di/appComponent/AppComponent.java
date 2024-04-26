@@ -8,7 +8,6 @@ import com.miguelrosa.practicas_signlab.home.view.HomeActivity;
 import com.miguelrosa.practicas_signlab.login.view.LoginActivity;
 import com.miguelrosa.practicas_signlab.portadas.view.PortadasFragmentImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostAddImpl;
-import com.miguelrosa.practicas_signlab.posts.view.PostEditImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostViewImpl;
 import com.miguelrosa.practicas_signlab.usuarios.view.PerfilUsuarioImpl;
 import com.miguelrosa.practicas_signlab.usuarios.view.UsuariosFragmentImpl;
@@ -34,8 +33,6 @@ public interface AppComponent {
     void inject(PerfilUsuarioImpl perfilusuario);
 
     void inject(PostViewImpl postView);
-
-    void inject(PostEditImpl postEdit);
 
     void inject(PostAddImpl postAdd);
 }

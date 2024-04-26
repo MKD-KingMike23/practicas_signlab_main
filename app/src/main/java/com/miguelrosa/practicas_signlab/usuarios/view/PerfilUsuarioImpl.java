@@ -28,7 +28,6 @@ import com.miguelrosa.practicas_signlab.di.appModule.AppModule;
 import com.miguelrosa.practicas_signlab.di.appModule.SharedPreferencesModule;
 import com.miguelrosa.practicas_signlab.home.view.HomeActivity;
 import com.miguelrosa.practicas_signlab.posts.view.PostAddImpl;
-import com.miguelrosa.practicas_signlab.posts.view.PostEditImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostViewImpl;
 import com.miguelrosa.practicas_signlab.usuarios.adapter.PostsAdapter;
 import com.miguelrosa.practicas_signlab.usuarios.adapter.TodosAdapter;
@@ -128,7 +127,7 @@ public class PerfilUsuarioImpl extends AppCompatActivity implements PerfilUsuari
 
     @Override
     public void onEditClicked(Post post) {
-        Intent intent = new Intent(PerfilUsuarioImpl.this, PostEditImpl.class);
+        Intent intent = new Intent(PerfilUsuarioImpl.this, PostAddImpl.class);
         intent.putExtra("post", post);
         startActivity(intent);
     }

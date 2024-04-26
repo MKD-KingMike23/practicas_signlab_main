@@ -20,8 +20,13 @@ public class PostAddPresenterImpl implements PostAddPresenter, PostAddInteractor
     public PostAddPresenterImpl(){}
 
     @Override
-    public void onGuardar(int userId, String title, String body)  {
-        interactor.onSetDataToApi(userId, title, body, this, this);
+    public void onAddPost(int userId, String title, String body)  {
+        interactor.onAddDataToApi(userId, title, body, this, this);
+    }
+
+    @Override
+    public void onEditPost(int postId, int id, String title, String body, int userId)  {
+        interactor.onEditDataToApi(postId, id, title, body, userId, this, this);
     }
 
     @Override

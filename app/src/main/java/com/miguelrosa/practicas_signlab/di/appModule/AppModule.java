@@ -12,20 +12,14 @@ import com.miguelrosa.practicas_signlab.portadas.interactor.PortadasInteractorIm
 import com.miguelrosa.practicas_signlab.portadas.interactor.PortadasInteractor;
 import com.miguelrosa.practicas_signlab.posts.interactor.PostAddInteractor;
 import com.miguelrosa.practicas_signlab.posts.interactor.PostAddInteractorImpl;
-import com.miguelrosa.practicas_signlab.posts.interactor.PostEditInteractor;
-import com.miguelrosa.practicas_signlab.posts.interactor.PostEditInteractorImpl;
 import com.miguelrosa.practicas_signlab.posts.interactor.PostInteractor;
 import com.miguelrosa.practicas_signlab.posts.interactor.PostInteractorImpl;
 import com.miguelrosa.practicas_signlab.posts.presenter.PostAddPresenter;
 import com.miguelrosa.practicas_signlab.posts.presenter.PostAddPresenterImpl;
-import com.miguelrosa.practicas_signlab.posts.presenter.PostEditPresenter;
-import com.miguelrosa.practicas_signlab.posts.presenter.PostEditPresenterImpl;
 import com.miguelrosa.practicas_signlab.posts.presenter.PostPresenter;
 import com.miguelrosa.practicas_signlab.posts.presenter.PostPresenterImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostAdd;
 import com.miguelrosa.practicas_signlab.posts.view.PostAddImpl;
-import com.miguelrosa.practicas_signlab.posts.view.PostEdit;
-import com.miguelrosa.practicas_signlab.posts.view.PostEditImpl;
 import com.miguelrosa.practicas_signlab.posts.view.PostView;
 import com.miguelrosa.practicas_signlab.posts.view.PostViewImpl;
 import com.miguelrosa.practicas_signlab.usuarios.interactor.PerfilUsuarioInteractor;
@@ -66,7 +60,6 @@ public class AppModule {
     private UsuariosFragmentImpl usuariosfragment;
     private PerfilUsuarioImpl perfilusuario;
     private PostViewImpl postView;
-    private PostEditImpl postEdit;
     private PostAddImpl postAdd;
     private Context context;
 
@@ -113,11 +106,6 @@ public class AppModule {
 
     public AppModule(PostViewImpl postView, Context context) {
         this.postView = postView;
-        this.context = context;
-    }
-
-    public AppModule(PostEditImpl postEdit, Context context) {
-        this.postEdit = postEdit;
         this.context = context;
     }
 
@@ -196,15 +184,6 @@ public class AppModule {
 
     @Nullable
     @Provides
-    public PostEdit postEdit() {
-        if (postEdit!=null){
-            return postEdit;
-        }
-        return null;
-    }
-
-    @Nullable
-    @Provides
     public PostAdd postAdd() {
         if (postAdd!=null){
             return postAdd;
@@ -243,11 +222,6 @@ public class AppModule {
     }
 
     @Provides
-    public PostEditPresenter providesPostEditPresenterImpl(PostEditPresenterImpl presenter){
-        return presenter;
-    }
-
-    @Provides
     public PostAddPresenter providesPostAddPresenterImpl(PostAddPresenterImpl presenter){
         return presenter;
     }
@@ -279,11 +253,6 @@ public class AppModule {
 
     @Provides
     public PostInteractor providesPostInteractorImpl(PostInteractorImpl interactor){
-        return interactor;
-    }
-
-    @Provides
-    public PostEditInteractor providesPostEditInteractorImpl(PostEditInteractorImpl interactor){
         return interactor;
     }
 
